@@ -121,17 +121,19 @@ def check_win(array, sign):  # проверяет условие победы-п
 def input_data():  # получает вводимые игроком данные
     global trigger
     if trigger == 1:
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            x_pos, y_pos = pygame.mouse.get_pos()
-            column = x_pos // (size_border + size_block)
-            row = y_pos // (size_border + size_block)
-            if array_values[row][column] == 0:
-                if first_gamer == 'gamer':
-                    array_values[row][column] = 'X'
-                elif first_gamer == 'computer':
-                    array_values[row][column] = 'O'
+        
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x_pos, y_pos = pygame.mouse.get_pos()
+                column = x_pos // (size_border + size_block)
+                row = y_pos // (size_border + size_block)
+                print('Push')
+                if array_values[row][column] == 0:
+                    if first_gamer == 'gamer':
+                        array_values[row][column] = 'X'
+                    elif first_gamer == 'computer':
+                        array_values[row][column] = 'O'
 
-                trigger = 0
+                    trigger = 0
 
 
 def ai_computer():  # поведение компьютера
@@ -181,6 +183,7 @@ while True:
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and start_game == 0:
             start_game = 1
             screen.fill((0, 0, 0))
+        input_data()
 
     if start_game == 0:
         start_screen()
